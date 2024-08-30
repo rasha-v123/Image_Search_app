@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ImageCard from "./components/ImageCard";
+import ImageSearch from "./components/ImageSearch";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -24,10 +25,11 @@ function App() {
         console.error(err);
         setLoading(false);
       });
-  }, []); // Add 'term' as a dependency
+  }, [term]); // Add 'term' as a dependency
 
   return (
     <div className="container mx-auto">
+      <ImageSearch searchText={(search) => setTerm(search)} />
       <div className="grid grid-cols-3 gap-4">
         {images.map((image) => (
           <ImageCard image={image} key={image.id} />
